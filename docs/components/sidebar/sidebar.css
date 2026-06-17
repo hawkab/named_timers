@@ -1,0 +1,50 @@
+.sidebar {
+  position: sticky;
+  top: 16px;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  padding: 16px;
+}
+
+.sidebar__header {
+  display: grid;
+  gap: 14px;
+}
+
+.sidebar h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -.025em;
+}
+
+.sidebar p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sidebar__new {
+  width: 100%;
+}
+
+.sidebar__list {
+  display: grid;
+  gap: 10px;
+}
+
+@media (max-width: 1040px) {
+  .sidebar {
+    position: relative;
+    top: auto;
+    max-height: none;
+  }
+}

@@ -1,0 +1,79 @@
+.stage-editor {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--panel-strong) 66%, transparent);
+  padding: 12px;
+  transition: opacity .16s ease, border-color .16s ease, transform .16s ease, outline-color .16s ease;
+  touch-action: none;
+}
+
+.stage-editor.dragging {
+  opacity: .42;
+  border-color: var(--accent);
+  transform: scale(.985);
+}
+
+.stage-editor.drag-over {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.stage-editor__drag {
+  min-height: 100%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--accent-soft) 35%, transparent);
+  cursor: grab;
+  user-select: none;
+  font-weight: 950;
+  letter-spacing: -4px;
+}
+
+.stage-editor__drag:active { cursor: grabbing; }
+
+.stage-editor__body {
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.stage-editor__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stage-editor__header strong {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.stage-editor__grid {
+  display: grid;
+  gap: 12px;
+}
+
+.stage-editor__duration {
+  max-width: 520px;
+}
+
+body.stage-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .stage-editor {
+    grid-template-columns: 1fr;
+  }
+  .stage-editor__drag {
+    min-height: 34px;
+  }
+}

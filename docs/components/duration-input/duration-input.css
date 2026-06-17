@@ -1,0 +1,29 @@
+.duration-input {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.duration-input__part {
+  display: grid;
+  gap: 6px;
+}
+
+.duration-input__part span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.duration-input__part input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--panel-strong) 78%, transparent);
+  color: var(--text);
+  padding: 10px 12px;
+  font-weight: 850;
+}

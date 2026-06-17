@@ -1,0 +1,20 @@
+<div class="app-shell">
+  <aside class="app-shell__sidebar" data-slot="sidebar"></aside>
+  <section class="app-shell__workspace">
+    <header class="app-shell__hero">
+      <div class="app-shell__brand">
+        <div class="app-shell__logo" aria-hidden="true">W</div>
+        <div>
+          <h1 data-role="app-title"></h1>
+          <p data-role="app-lead"></p>
+        </div>
+      </div>
+      <div class="app-shell__status">
+        <span class="pill" data-role="autosave-pill"></span>
+      </div>
+    </header>
+    <main class="app-shell__main" data-slot="main"></main>
+  </section>
+  <div data-slot="floating"></div>
+  <div data-slot="toast"></div>
+</div>

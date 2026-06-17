@@ -1,0 +1,9 @@
+.file-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 1040px) {
+  .file-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

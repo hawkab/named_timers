@@ -1,0 +1,25 @@
+<section class="sound-settings">
+  <div class="sound-settings__header">
+    <div>
+      <h3 data-role="title"></h3>
+      <p data-role="hint"></p>
+    </div>
+    <button class="btn" type="button" data-action="test-sound"></button>
+  </div>
+  <div class="sound-settings__grid">
+    <label class="field">
+      <span class="field-label" data-role="mode-label"></span>
+      <select data-role="mode">
+        <option value="default" data-role="mode-default"></option>
+        <option value="custom" data-role="mode-custom"></option>
+        <option value="silent" data-role="mode-silent"></option>
+      </select>
+    </label>
+    <div class="sound-settings__file">
+      <input class="sr-only" type="file" accept="audio/*" data-role="file-input">
+      <button class="btn" type="button" data-action="choose-file"></button>
+      <button class="btn btn-danger" type="button" data-action="clear-file"></button>
+    </div>
+  </div>
+  <div class="sound-settings__current" data-role="current"></div>
+</section>

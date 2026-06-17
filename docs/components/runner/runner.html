@@ -1,0 +1,41 @@
+<section class="runner">
+  <div class="runner__stage-card" data-role="stage-card">
+    <div class="runner__header">
+      <div>
+        <span class="pill" data-role="runner-title"></span>
+        <h2 data-role="stage-name"></h2>
+      </div>
+      <span class="pill" data-role="stage-counter"></span>
+    </div>
+    <p data-role="stage-description"></p>
+    <div data-slot="progress"></div>
+    <div class="runner__divider"></div>
+    <div class="runner__duration">
+      <span data-role="duration-label"></span>
+      <strong data-role="duration-value"></strong>
+    </div>
+  </div>
+
+  <div class="runner__clock-grid">
+    <article class="runner__clock" data-role="remaining-clock">
+      <span data-role="remaining-label"></span>
+      <strong data-role="remaining-value"></strong>
+    </article>
+    <article class="runner__clock" data-role="elapsed-clock">
+      <span data-role="elapsed-label"></span>
+      <strong data-role="elapsed-value"></strong>
+    </article>
+  </div>
+
+  <div class="runner__controls">
+    <button class="btn" type="button" data-action="back-edit"></button>
+    <div class="runner__control-group">
+      <button class="btn" type="button" data-action="toggle-pause"></button>
+      <button class="btn" type="button" data-action="previous-stage"></button>
+      <button class="btn" type="button" data-action="next-stage"></button>
+    </div>
+    <button class="btn btn-danger" type="button" data-action="stop"></button>
+  </div>
+
+  <div class="runner__timeline" data-slot="timeline"></div>
+</section>

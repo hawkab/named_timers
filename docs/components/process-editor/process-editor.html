@@ -1,0 +1,45 @@
+<section class="process-editor">
+  <div class="process-editor__card">
+    <div class="process-editor__header">
+      <div>
+        <h2 data-role="title"></h2>
+        <p data-role="capacity-status"></p>
+      </div>
+      <div class="process-editor__actions">
+        <button class="btn btn-primary" type="button" data-action="start-run"></button>
+        <button class="btn btn-danger" type="button" data-action="delete-process"></button>
+      </div>
+    </div>
+    <div class="process-editor__form">
+      <label class="field">
+        <span class="field-label" data-role="process-name-label"></span>
+        <input type="text" data-role="process-name">
+      </label>
+      <label class="field">
+        <span class="field-label" data-role="process-description-label"></span>
+        <textarea data-role="process-description"></textarea>
+      </label>
+      <div class="field">
+        <span class="field-label" data-role="process-duration-label"></span>
+        <div data-slot="process-duration"></div>
+      </div>
+    </div>
+    <div class="process-editor__metrics">
+      <div><span data-role="used-label"></span><strong data-role="used-value"></strong></div>
+      <div><span data-role="remaining-label"></span><strong data-role="remaining-value"></strong></div>
+      <div><span data-role="total-label"></span><strong data-role="total-value"></strong></div>
+    </div>
+    <div data-slot="sound-settings"></div>
+  </div>
+
+  <div class="process-editor__card">
+    <div class="process-editor__section-head">
+      <div>
+        <h3 data-role="stages-title"></h3>
+        <p data-role="stages-hint"></p>
+      </div>
+      <button class="btn" type="button" data-action="add-stage"></button>
+    </div>
+    <div class="process-editor__stages" id="stagesList" data-slot="stages"></div>
+  </div>
+</section>

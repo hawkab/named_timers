@@ -1,0 +1,71 @@
+.process-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--panel-strong) 64%, transparent);
+  padding: 8px;
+  transition: border-color .16s ease, background .16s ease, transform .16s ease;
+}
+
+.process-card:hover,
+.process-card.is-active {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
+  background: color-mix(in srgb, var(--accent-soft) 54%, var(--panel-strong));
+}
+
+.process-card__body {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  display: grid;
+  gap: 5px;
+  padding: 8px 8px;
+}
+
+.process-card__name {
+  font-weight: 950;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.process-card__description,
+.process-card__meta {
+  color: var(--muted);
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.process-card__delete {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  border: 1px solid color-mix(in srgb, var(--danger) 34%, var(--line));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--danger) 9%, transparent);
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  align-self: center;
+  justify-self: center;
+  padding: 0;
+}
+
+.process-card__delete:hover {
+  background: color-mix(in srgb, var(--danger) 16%, transparent);
+}
