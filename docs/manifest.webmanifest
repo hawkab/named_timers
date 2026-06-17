@@ -1,6 +1,6 @@
 {
   "id": "./",
-  "name": "WAKA:Named timers",
+  "name": "WAKA: Named timers",
   "short_name": "WAKA Timers",
   "description": "Named process timers with stages, autosave, PWA, local notifications and JSON import/export.",
   "start_url": "./",

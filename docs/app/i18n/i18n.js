@@ -5,6 +5,15 @@ let currentLang = 'ru';
 export function setLanguage(lang) {
   currentLang = translations[lang] ? lang : 'ru';
   document.documentElement.lang = currentLang;
+  updateDocumentMetadata();
+}
+
+function updateDocumentMetadata() {
+  document.title = t('appTitle');
+  const description = document.querySelector('meta[name="description"]');
+  if (description) {
+    description.setAttribute('content', t('appMetaDescription'));
+  }
 }
 
 export function getLanguage() {

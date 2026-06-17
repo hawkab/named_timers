@@ -1,6 +1,7 @@
 export const translations = {
   ru: {
-    appTitle: 'WAKA:Named timers',
+    appTitle: 'WAKA: Именованные таймеры',
+    appMetaDescription: 'WAKA: Именованные таймеры — локальное PWA-приложение для последовательных процессов, этапов интервью и регламентов.',
     appLead: 'Именованные таймеры для процессов, этапов интервью, регламентов и любых последовательных сценариев.',
     savedProcesses: 'Сохранённые процессы',
     savedProcessesHint: 'Выберите процесс, чтобы редактировать этапы или запустить прогон.',
@@ -100,7 +101,8 @@ export const translations = {
     themeToggle: 'Тема'
   },
   en: {
-    appTitle: 'WAKA:Named timers',
+    appTitle: 'WAKA: Named timers',
+    appMetaDescription: 'WAKA: Named timers — local PWA for sequential processes, interview stages, and procedures.',
     appLead: 'Named timers for processes, interview stages, procedures, and any sequential scenarios.',
     savedProcesses: 'Saved processes',
     savedProcessesHint: 'Select a process to edit stages or start a run.',
