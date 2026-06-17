@@ -9,7 +9,8 @@ export async function renderStageEditor({ stage, index, t, onChange, onDurationC
   const element = await createFromTemplate(templateUrl, styleUrl);
   element.dataset.stageId = stage.id;
   element.querySelector('[data-role="drag-handle"]').title = t('dragStage');
-  setText(element, '[data-role="index"]', `${t('stage')} ${index + 1}`);
+  setText(element, '[data-role="index"]', String(index + 1));
+  setText(element, '[data-role="title"]', stage.name || `${t('stage')} ${index + 1}`);
   setText(element, '[data-role="name-label"]', t('stageName'));
   setText(element, '[data-role="description-label"]', t('stageDescription'));
   setText(element, '[data-role="duration-label"]', t('stageDuration'));
@@ -19,6 +20,7 @@ export async function renderStageEditor({ stage, index, t, onChange, onDurationC
 
   element.querySelector('[data-role="name-input"]').addEventListener('input', (event) => {
     stage.name = event.target.value;
+    setText(element, '[data-role="title"]', stage.name || `${t('stage')} ${index + 1}`);
     onChange();
   });
   element.querySelector('[data-role="description-input"]').addEventListener('input', (event) => {

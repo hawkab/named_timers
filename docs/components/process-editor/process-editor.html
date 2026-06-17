@@ -11,23 +11,23 @@
       </div>
     </div>
     <div class="process-editor__form">
-      <label class="field">
+      <label class="field process-editor__name-field">
         <span class="field-label" data-role="process-name-label"></span>
         <input type="text" data-role="process-name">
       </label>
-      <label class="field">
-        <span class="field-label" data-role="process-description-label"></span>
-        <textarea data-role="process-description"></textarea>
-      </label>
-      <div class="field">
+      <div class="field process-editor__duration-field">
         <span class="field-label" data-role="process-duration-label"></span>
         <div data-slot="process-duration"></div>
       </div>
+      <label class="field process-editor__description-field">
+        <span class="field-label" data-role="process-description-label"></span>
+        <textarea data-role="process-description"></textarea>
+      </label>
     </div>
     <div class="process-editor__metrics">
+      <div><span data-role="total-label"></span><strong data-role="total-value"></strong></div>
       <div><span data-role="used-label"></span><strong data-role="used-value"></strong></div>
       <div><span data-role="remaining-label"></span><strong data-role="remaining-value"></strong></div>
-      <div><span data-role="total-label"></span><strong data-role="total-value"></strong></div>
     </div>
     <div data-slot="sound-settings"></div>
   </div>
@@ -38,7 +38,7 @@
         <h3 data-role="stages-title"></h3>
         <p data-role="stages-hint"></p>
       </div>
-      <button class="btn" type="button" data-action="add-stage"></button>
+      <button class="btn btn-primary" type="button" data-action="add-stage"></button>
     </div>
     <div class="process-editor__stages" id="stagesList" data-slot="stages"></div>
   </div>

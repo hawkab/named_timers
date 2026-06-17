@@ -24,6 +24,9 @@ class WakaNamedTimersApp {
     this.slots = {};
     this.runnerElement = null;
     this.tickId = null;
+    this.sidebarRenderVersion = 0;
+    this.mainRenderVersion = 0;
+    this.floatingRenderVersion = 0;
   }
 
   async init() {
@@ -73,10 +76,11 @@ class WakaNamedTimersApp {
   }
 
   async renderSidebar() {
-    if (!this.slots.sidebar) return;
-    clearNode(this.slots.sidebar);
-    this.slots.sidebar.appendChild(await renderSidebar({
-      processes: this.processes,
+    const slot = this.slots.sidebar;
+    if (!slot) return;
+    const version = ++this.sidebarRenderVersion;
+    const sidebar = await renderSidebar({
+      processes: this.uniqueProcesses(),
       selectedProcessId: this.selectedProcessId,
       t,
       onNew: () => this.createProcess(),
@@ -84,24 +88,29 @@ class WakaNamedTimersApp {
       onDelete: (id) => this.deleteProcess(id),
       onExport: () => this.exportJson(),
       onImportFile: (file) => this.importJson(file),
-    }));
+    });
+    if (version !== this.sidebarRenderVersion || this.slots.sidebar !== slot) {
+      return;
+    }
+    clearNode(slot);
+    slot.appendChild(sidebar);
   }
 
   async renderMain() {
-    if (!this.slots.main) return;
-    clearNode(this.slots.main);
+    const slot = this.slots.main;
+    if (!slot) return;
+    const version = ++this.mainRenderVersion;
     this.runnerElement = null;
     const process = this.getSelectedProcess();
+    let nextMain;
     if (!process) {
-      this.slots.main.appendChild(await renderEmptyState({
+      nextMain = await renderEmptyState({
         t,
         onCreate: () => this.createProcess(),
-      }));
-      return;
-    }
-    if (this.mode === 'runner' && this.runState?.active && this.runState.processId === process.id) {
+      });
+    } else if (this.mode === 'runner' && this.runState?.active && this.runState.processId === process.id) {
       const snapshot = this.getRunSnapshot();
-      this.runnerElement = await renderRunner({
+      nextMain = await renderRunner({
         process,
         snapshot,
         t,
@@ -111,31 +120,54 @@ class WakaNamedTimersApp {
         onNextStage: () => this.nextStage(),
         onStop: () => this.stopRun(),
       });
-      this.slots.main.appendChild(this.runnerElement);
+    } else {
+      this.mode = 'editor';
+      nextMain = await renderProcessEditor({
+        process,
+        t,
+        onAutosave: () => this.autosave(),
+        onRerender: () => this.saveAndRerender(),
+        onDeleteProcess: (id) => this.deleteProcess(id),
+        onStartRun: (id) => this.startRun(id),
+        onToast: (message, tone) => this.toast(message, tone),
+      });
+    }
+    if (version !== this.mainRenderVersion || this.slots.main !== slot) {
       return;
     }
-    this.mode = 'editor';
-    this.slots.main.appendChild(await renderProcessEditor({
-      process,
-      t,
-      onAutosave: () => this.autosave(),
-      onRerender: () => this.saveAndRerender(),
-      onDeleteProcess: (id) => this.deleteProcess(id),
-      onStartRun: (id) => this.startRun(id),
-      onToast: (message, tone) => this.toast(message, tone),
-    }));
+    clearNode(slot);
+    slot.appendChild(nextMain);
+    this.runnerElement = this.mode === 'runner' ? nextMain : null;
   }
 
   async renderFloatingControls() {
-    if (!this.slots.floating) return;
-    clearNode(this.slots.floating);
-    this.slots.floating.appendChild(await renderFloatingControls({
+    const slot = this.slots.floating;
+    if (!slot) return;
+    const version = ++this.floatingRenderVersion;
+    const controls = await renderFloatingControls({
       theme: this.settings.theme,
       lang: this.settings.lang,
       t,
       onThemeToggle: () => this.toggleTheme(),
       onLangToggle: () => this.toggleLanguage(),
-    }));
+    });
+    if (version !== this.floatingRenderVersion || this.slots.floating !== slot) {
+      return;
+    }
+    clearNode(slot);
+    slot.appendChild(controls);
+  }
+
+  uniqueProcesses() {
+    const seen = new Set();
+    this.processes = this.processes.filter((process) => {
+      if (!process || seen.has(process.id)) {
+        return false;
+      }
+      seen.add(process.id);
+      return true;
+    });
+    return this.processes;
   }
 
   getSelectedProcess() {
@@ -195,7 +227,7 @@ class WakaNamedTimersApp {
 
   persistProcesses() {
     try {
-      saveProcesses(this.processes);
+      saveProcesses(this.uniqueProcesses());
     } catch (error) {
       this.toast(`${t('storageSaveFailed')} ${t('storageSaveFailedHint')}`, 'danger');
     }
@@ -207,7 +239,7 @@ class WakaNamedTimersApp {
   }
 
   exportJson() {
-    exportProcesses(this.processes);
+    exportProcesses(this.uniqueProcesses());
     this.toast(t('exportDone'), 'success');
   }
 

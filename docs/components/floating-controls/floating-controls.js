@@ -10,7 +10,8 @@ export async function renderFloatingControls({ theme, lang, t, onThemeToggle, on
   themeButton.textContent = theme === 'light' ? '☀' : '☾';
   themeButton.title = t('themeToggle');
   themeButton.setAttribute('aria-label', t('themeToggle'));
-  langButton.dataset.lang = lang;
+  element.querySelector('[data-role="en"]').classList.toggle('is-active', lang === 'en');
+  element.querySelector('[data-role="ru"]').classList.toggle('is-active', lang === 'ru');
   langButton.title = t('languageToggle');
   langButton.setAttribute('aria-label', t('languageToggle'));
   themeButton.addEventListener('click', onThemeToggle);

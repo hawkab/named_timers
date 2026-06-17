@@ -1,4 +1,4 @@
-const CACHE_NAME = 'waka-named-timers-v1';
+const CACHE_NAME = 'waka-named-timers-v2';
 const APP_SHELL = [
   "./",
   "./app/i18n/i18n.js",

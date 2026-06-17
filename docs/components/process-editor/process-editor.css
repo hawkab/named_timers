@@ -46,13 +46,16 @@
 
 .process-editor__form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 360px);
   gap: 14px;
 }
 
-.process-editor__form .field:nth-child(3) {
+.process-editor__description-field {
   grid-column: 1 / -1;
-  max-width: 620px;
+}
+
+.process-editor__duration-field {
+  min-width: 0;
 }
 
 .process-editor__metrics {
@@ -93,11 +96,17 @@
   .process-editor__section-head {
     flex-direction: column;
   }
+
   .process-editor__actions {
     justify-content: flex-start;
   }
+
   .process-editor__form,
   .process-editor__metrics {
     grid-template-columns: 1fr;
+  }
+
+  .process-editor__description-field {
+    grid-column: auto;
   }
 }

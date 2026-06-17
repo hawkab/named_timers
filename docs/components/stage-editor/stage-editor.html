@@ -1,23 +1,27 @@
 <article class="stage-editor" data-role="stage-card">
-  <div class="stage-editor__drag" data-role="drag-handle" title="Drag stage" aria-hidden="true">⋮⋮</div>
-  <div class="stage-editor__body">
-    <div class="stage-editor__header">
-      <strong data-role="index"></strong>
-      <button class="btn btn-danger" type="button" data-action="delete-stage"></button>
+  <div class="stage-editor__header">
+    <div class="stage-editor__identity">
+      <span class="stage-editor__drag" data-role="drag-handle" title="Drag stage" aria-hidden="true">⋮⋮</span>
+      <span class="stage-editor__index" data-role="index"></span>
+      <strong class="stage-editor__title" data-role="title"></strong>
     </div>
-    <div class="stage-editor__grid">
-      <label class="field">
-        <span class="field-label" data-role="name-label"></span>
-        <input type="text" data-role="name-input">
-      </label>
-      <label class="field">
-        <span class="field-label" data-role="description-label"></span>
-        <textarea data-role="description-input"></textarea>
-      </label>
-      <div class="field stage-editor__duration">
-        <span class="field-label" data-role="duration-label"></span>
-        <div data-slot="duration"></div>
-      </div>
+    <button class="btn btn-danger stage-editor__delete" type="button" data-action="delete-stage"></button>
+  </div>
+
+  <div class="stage-editor__grid">
+    <label class="field stage-editor__name-field">
+      <span class="field-label" data-role="name-label"></span>
+      <input type="text" data-role="name-input">
+    </label>
+
+    <div class="field stage-editor__duration-field">
+      <span class="field-label" data-role="duration-label"></span>
+      <div data-slot="duration"></div>
     </div>
+
+    <label class="field stage-editor__description-field">
+      <span class="field-label" data-role="description-label"></span>
+      <textarea data-role="description-input"></textarea>
+    </label>
   </div>
 </article>
